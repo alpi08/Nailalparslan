@@ -7,36 +7,25 @@
   <meta name="description" content="Alparslan (Nail Alparslan Silman) — frontend, masaüstü ve oyun/simülasyon geliştiren bağımsız yazılımcı." />
   <meta name="theme-color" content="#050505" />
   <meta name="color-scheme" content="dark" />
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="tr_TR" />
   <meta property="og:title" content="Alparslan — Yaratıcı Geliştirici & Frontend Mühendisi" />
   <meta property="og:description" content="Glassmorphism arayüzler, sinematik animasyonlar ve uçtan uca dijital deneyimler." />
-
-  <!-- Favicon inline SVG -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23050505'/%3E%3Cpolygon points='20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5' fill='none' stroke='%2322e8ff' stroke-width='2'/%3E%3Cpolyline points='13,29 20,12 27,29' fill='none' stroke='%2322e8ff' stroke-width='2.3' stroke-linejoin='round' stroke-linecap='round'/%3E%3Cline x1='16.2' y1='22' x2='23.8' y2='22' stroke='%2322e8ff' stroke-width='2.3' stroke-linecap='round'/%3E%3C/svg%3E" />
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <!-- GSAP + ScrollTrigger + SplitText -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
-  <!-- Lenis smooth scroll -->
   <script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
-
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Skip link -->
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
-  <!-- Noise overlay SVG filter -->
+  <!-- Noise overlay -->
   <svg class="noise-defs" aria-hidden="true">
     <filter id="grain">
       <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence>
@@ -45,27 +34,24 @@
   </svg>
   <div class="noise-overlay" aria-hidden="true"></div>
 
-  <!-- Reusable icon sprite -->
+  <!-- Icon sprite -->
   <svg style="display:none" aria-hidden="true">
     <symbol id="icon-github" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.3 6.8 9.6.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.4-3.4-1.4-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.5-1.4.1-2.8 0 0 .8-.3 2.7 1a9.2 9.2 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.5.1 2.8.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5 3.9-1.3 6.8-5.1 6.8-9.6C22 6.6 17.5 2 12 2Z"/></symbol>
     <symbol id="icon-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" /><line x1="7.5" y1="10.5" x2="7.5" y2="17" /><circle cx="7.5" cy="7" r="0.2" /><path d="M11.5 17v-4.2c0-1.4 1-2.3 2.3-2.3 1.2 0 2 .9 2 2.3V17" /></symbol>
     <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 6.5 8 6 8-6" /></symbol>
     <symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4.2" /><circle cx="17.2" cy="6.8" r="0.3" fill="currentColor" /></symbol>
     <symbol id="icon-external" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></symbol>
-    <symbol id="icon-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></symbol>
-    <symbol id="icon-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></symbol>
     <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11.5a7 7 0 1 0-14 0C5 14.9 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.4" /></symbol>
     <symbol id="icon-send" viewBox="0 0 24 24"><path d="M21 3 11 13M21 3l-7 18-4-8-8-4 19-6Z" /></symbol>
-    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7" /></symbol>
     <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" /></symbol>
   </svg>
 
-  <!-- Custom cursor (hidden on touch via JS) -->
+  <!-- Custom cursor -->
   <canvas id="cursor-trail" aria-hidden="true"></canvas>
   <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
-  <!-- LOADING SCREEN -->
+  <!-- Loader -->
   <div id="loader" class="loader">
     <canvas id="loaderParticles" class="loader__particles"></canvas>
     <div class="loader__scanline" aria-hidden="true"></div>
@@ -83,7 +69,6 @@
     </div>
   </div>
 
-  <!-- Reveal wipe -->
   <div class="reveal-wipe" id="revealWipe" aria-hidden="true"><span></span><span></span><span></span></div>
 
   <!-- Scroll progress -->
@@ -101,7 +86,7 @@
     </div>
   </div>
 
-  <!-- HEADER -->
+  <!-- Header -->
   <header class="header" id="siteHeader">
     <div class="header__inner">
       <a href="#hero" class="brand" data-cursor="hover">
@@ -142,7 +127,7 @@
   </div>
 
   <main id="main">
-    <!-- HERO -->
+    <!-- Hero -->
     <section class="hero" id="hero">
       <canvas id="heroCanvas" class="hero__canvas"></canvas>
       <div class="hero__blob hero__blob--cyan" aria-hidden="true"></div>
@@ -150,12 +135,9 @@
       <div class="hero__grid" aria-hidden="true"></div>
       <div class="hero__rays" aria-hidden="true"></div>
       <div class="hero__floaters" id="heroFloaters" aria-hidden="true">
-        <span class="floater" style="--fx:8%; --fy:22%; --fd:0;">const passion = true;</span>
-        <span class="floater" style="--fx:82%; --fy:18%; --fd:1;">sudo build --premium</span>
-        <span class="floater" style="--fx:10%; --fy:68%; --fd:2;">&lt;Deneyim render={true} /&gt;</span>
-        <span class="floater" style="--fx:85%; --fy:62%; --fd:1;">git commit -m "hayal kur"</span>
-        <span class="floater" style="--fx:50%; --fy:10%; --fd:0;">01001000 01101001</span>
-        <span class="floater" style="--fx:90%; --fy:85%; --fd:2;">// her piksel bir karar</span>
+        <span class="floater" style="--fx:8%; --fy:22%;">const passion = true;</span>
+        <span class="floater" style="--fx:82%; --fy:18%;">sudo build --premium</span>
+        <span class="floater" style="--fx:10%; --fy:68%;">&lt;Deneyim render={true} /&gt;</span>
       </div>
       <div class="hero__inner">
         <p class="hero__eyebrow mono"><span class="blink-cursor">$</span> whoami</p>
@@ -173,7 +155,7 @@
       </a>
     </section>
 
-    <!-- ABOUT -->
+    <!-- About -->
     <section class="about" id="about">
       <div class="section-bg-grid" aria-hidden="true"></div>
       <div class="container about__grid">
@@ -182,7 +164,6 @@
             <svg class="about__avatar" viewBox="0 0 200 230" aria-hidden="true">
               <polygon class="avatar-shoulders" points="72,118 128,118 168,230 32,230" />
               <polygon class="avatar-head" points="100,35 128,45 140,75 128,105 100,118 72,105 60,75 72,45" />
-              <g class="avatar-facets"><line x1="100" y1="35" x2="100" y2="118" /><line x1="60" y1="75" x2="140" y2="75" /><line x1="72" y1="45" x2="128" y2="105" /><line x1="128" y1="45" x2="72" y2="105" /></g>
             </svg>
             <div class="about__scan" aria-hidden="true"></div>
             <span class="about__tag-id mono">AS_01 // AKTİF</span>
@@ -205,7 +186,7 @@
       </div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- Skills -->
     <section class="skills" id="skills">
       <div class="container">
         <div class="section-head"><p class="eyebrow mono" data-reveal="lines">// TEKNOLOJİ YIĞINI</p><h2 class="section-title" data-reveal="lines">Fikirleri çalışan ürüne dönüştüren araçlar.</h2></div>
@@ -213,24 +194,15 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- Projects -->
     <section class="projects" id="projects">
       <div class="container">
-        <div class="section-head section-head--split">
-          <div><p class="eyebrow mono" data-reveal="lines">// SEÇİLİ İŞLER</p><h2 class="section-title" data-reveal="lines">Düşünceden deneyime.</h2></div>
-          <div class="filter-bar" id="filterBar" role="tablist" aria-label="Proje filtrele">
-            <button class="filter-btn is-active" data-filter="all" data-cursor="hover">Tümü</button>
-            <button class="filter-btn" data-filter="web" data-cursor="hover">Web</button>
-            <button class="filter-btn" data-filter="masaustu" data-cursor="hover">Masaüstü</button>
-            <button class="filter-btn" data-filter="oyun" data-cursor="hover">Oyun & Simülasyon</button>
-            <button class="filter-btn" data-filter="yapayzeka" data-cursor="hover">Yapay Zekâ</button>
-          </div>
-        </div>
+        <div class="section-head"><p class="eyebrow mono" data-reveal="lines">// SEÇİLİ İŞLER</p><h2 class="section-title" data-reveal="lines">Düşünceden deneyime.</h2></div>
         <div class="projects__grid" id="projectsGrid"></div>
       </div>
     </section>
 
-    <!-- SERVICES -->
+    <!-- Services -->
     <section class="services" id="services">
       <div class="container">
         <div class="section-head"><p class="eyebrow mono" data-reveal="lines">// NELER YAPIYORUM</p><h2 class="section-title" data-reveal="lines">Tek kişilik stüdyo, uçtan uca üretim.</h2></div>
@@ -238,7 +210,7 @@
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- Experience -->
     <section class="experience" id="experience">
       <div class="container">
         <div class="section-head"><p class="eyebrow mono" data-reveal="lines">// YOLCULUK</p><h2 class="section-title" data-reveal="lines">Meraktan ustalığa.</h2></div>
@@ -246,25 +218,8 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="testimonials" id="testimonials">
-      <div class="section-bg-grid" aria-hidden="true"></div>
-      <div class="container">
-        <div class="section-head section-head--center"><p class="eyebrow mono" data-reveal="lines">// REFERANSLAR</p><h2 class="section-title" data-reveal="lines">Müşteriler ne diyor?</h2></div>
-        <div class="testimonials__wrap">
-          <div class="testimonials__track" id="testimonialsTrack"></div>
-          <div class="testimonials__controls">
-            <button class="testimonials__arrow" id="testimonialPrev" aria-label="Önceki" data-cursor="hover"><svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"/></svg></button>
-            <div class="testimonials__dots" id="testimonialsDots"></div>
-            <button class="testimonials__arrow" id="testimonialNext" aria-label="Sonraki" data-cursor="hover"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
+    <!-- Contact -->
     <section class="contact" id="contact">
-      <div class="hero__rays hero__rays--contact" aria-hidden="true"></div>
       <div class="container contact__grid">
         <div class="contact__intro" data-reveal="lines">
           <p class="eyebrow mono">// İLETİŞİM</p>
@@ -293,14 +248,14 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer class="footer" id="siteFooter">
     <canvas id="footerCanvas" class="footer__canvas" aria-hidden="true"></canvas>
     <div class="container footer__inner">
       <div class="footer__top"><a href="#hero" class="footer__wordmark" data-cursor="hover">ALPARSLAN</a><p class="footer__tagline">Kod ve tasarımla deneyimler inşa ediyorum.</p></div>
       <div class="footer__columns">
-        <nav class="footer__col" aria-label="Site haritası"><h4 class="mono">SİTE HARİTASI</h4><a href="#hero" data-cursor="hover">Anasayfa</a><a href="#about" data-cursor="hover">Hakkımda</a><a href="#projects" data-cursor="hover">Projeler</a><a href="#contact" data-cursor="hover">İletişim</a></nav>
-        <nav class="footer__col" aria-label="Sosyal bağlantılar"><h4 class="mono">BAĞLANTILAR</h4><a href="#" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-github"/></svg>GitHub</a><a href="#" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-linkedin"/></svg>LinkedIn</a><a href="#" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-instagram"/></svg>Instagram</a><a href="mailto:merhaba@alparslan.dev" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-mail"/></svg>E-posta</a></nav>
+        <nav class="footer__col"><h4 class="mono">SİTE HARİTASI</h4><a href="#hero" data-cursor="hover">Anasayfa</a><a href="#about" data-cursor="hover">Hakkımda</a><a href="#projects" data-cursor="hover">Projeler</a><a href="#contact" data-cursor="hover">İletişim</a></nav>
+        <nav class="footer__col"><h4 class="mono">BAĞLANTILAR</h4><a href="#" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-github"/></svg>GitHub</a><a href="#" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-linkedin"/></svg>LinkedIn</a><a href="#" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-instagram"/></svg>Instagram</a><a href="mailto:merhaba@alparslan.dev" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-mail"/></svg>E-posta</a></nav>
         <div class="footer__col footer__col--cta"><h4 class="mono">YENİ BİR PROJE Mİ VAR?</h4><p>Fikrini anlat, beraber şekillendirelim.</p><a href="#contact" class="btn btn--primary btn--sm" data-cursor="hover" data-magnetic>Hadi Konuşalım</a></div>
       </div>
       <div class="footer__bottom"><p>© <span id="footerYear">2026</span> Nail Alparslan Silman. Tüm hakları saklıdır.</p><p class="mono">Bu site sıfırdan, elle kodlandı.</p></div>
