@@ -55,7 +55,6 @@
   <div id="loader" class="loader">
     <canvas id="loaderParticles" class="loader__particles"></canvas>
     <div class="loader__scanline" aria-hidden="true"></div>
-    <div class="loader__grid" aria-hidden="true"></div>
     <div class="loader__content">
       <svg class="loader__logo" viewBox="0 0 40 40" aria-hidden="true">
         <polygon class="logo-hex" points="20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5" />
@@ -132,13 +131,6 @@
       <canvas id="heroCanvas" class="hero__canvas"></canvas>
       <div class="hero__blob hero__blob--cyan" aria-hidden="true"></div>
       <div class="hero__blob hero__blob--violet" aria-hidden="true"></div>
-      <div class="hero__grid" aria-hidden="true"></div>
-      <div class="hero__rays" aria-hidden="true"></div>
-      <div class="hero__floaters" id="heroFloaters" aria-hidden="true">
-        <span class="floater" style="--fx:8%; --fy:22%;">const passion = true;</span>
-        <span class="floater" style="--fx:82%; --fy:18%;">sudo build --premium</span>
-        <span class="floater" style="--fx:10%; --fy:68%;">&lt;Deneyim render={true} /&gt;</span>
-      </div>
       <div class="hero__inner">
         <p class="hero__eyebrow mono"><span class="blink-cursor">$</span> whoami</p>
         <h1 class="hero__title" id="heroTitle">ALPARSLAN</h1>
@@ -157,13 +149,12 @@
 
     <!-- About -->
     <section class="about" id="about">
-      <div class="section-bg-grid" aria-hidden="true"></div>
       <div class="container about__grid">
         <div class="about__visual" data-reveal="mask">
           <div class="about__frame">
             <svg class="about__avatar" viewBox="0 0 200 230" aria-hidden="true">
-              <polygon class="avatar-shoulders" points="72,118 128,118 168,230 32,230" />
-              <polygon class="avatar-head" points="100,35 128,45 140,75 128,105 100,118 72,105 60,75 72,45" />
+              <polygon points="72,118 128,118 168,230 32,230" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
+              <polygon points="100,35 128,45 140,75 128,105 100,118 72,105 60,75 72,45" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.8" />
             </svg>
             <div class="about__scan" aria-hidden="true"></div>
             <span class="about__tag-id mono">AS_01 // AKTİF</span>
@@ -237,11 +228,11 @@
           </div>
         </div>
         <form class="contact__form" id="contactForm" novalidate data-reveal="up">
-          <div class="form-field"><input type="text" id="cf-name" name="name" placeholder=" " required autocomplete="name" /><label for="cf-name">Ad Soyad</label><span class="form-field__glow"></span></div>
-          <div class="form-field"><input type="email" id="cf-email" name="email" placeholder=" " required autocomplete="email" /><label for="cf-email">E-posta</label><span class="form-field__glow"></span></div>
-          <div class="form-field form-field--select"><label for="cf-type" class="form-field__label-static mono">Proje Türü</label><select id="cf-type" name="type"><option value="web">Web Sitesi</option><option value="masaustu">Masaüstü Uygulama</option><option value="oyun">Oyun & Simülasyon</option><option value="diger">Diğer</option></select><span class="form-field__glow"></span></div>
-          <div class="form-field form-field--area"><textarea id="cf-message" name="message" placeholder=" " rows="5" required></textarea><label for="cf-message">Projenden bahset</label><span class="form-field__glow"></span></div>
-          <button type="submit" class="btn btn--primary btn--liquid" id="contactSubmit"><span class="btn--liquid__fill" aria-hidden="true"></span><span class="btn--liquid__label"><span>Mesajı Gönder</span><svg viewBox="0 0 24 24"><use href="#icon-send"/></svg></span></button>
+          <div class="form-field"><input type="text" id="cf-name" name="name" placeholder=" " required autocomplete="name" /><label for="cf-name">Ad Soyad</label></div>
+          <div class="form-field"><input type="email" id="cf-email" name="email" placeholder=" " required autocomplete="email" /><label for="cf-email">E-posta</label></div>
+          <div class="form-field form-field--select"><label for="cf-type" class="form-field__label-static mono">Proje Türü</label><select id="cf-type" name="type"><option value="web">Web Sitesi</option><option value="masaustu">Masaüstü Uygulama</option><option value="oyun">Oyun & Simülasyon</option><option value="diger">Diğer</option></select></div>
+          <div class="form-field form-field--area"><textarea id="cf-message" name="message" placeholder=" " rows="4" required></textarea><label for="cf-message">Projenden bahset</label></div>
+          <button type="submit" class="btn btn--primary btn--liquid" id="contactSubmit"><span class="btn--liquid__label"><span>Mesajı Gönder</span><svg viewBox="0 0 24 24"><use href="#icon-send"/></svg></span></button>
           <p class="contact__form-note mono" id="contactFormNote" role="status" aria-live="polite"></p>
         </form>
       </div>
