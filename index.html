@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Alparslan — Yaratıcı Geliştirici &amp; Frontend Mühendisi</title>
+  <meta name="description" content="Alparslan (Nail Alparslan Silman) — frontend, masaüstü ve oyun/simülasyon geliştiren bağımsız yazılımcı. Glassmorphism arayüzler, sinematik animasyonlar ve uçtan uca dijital deneyimler." />
+  <meta name="theme-color" content="#050505" />
+  <meta name="color-scheme" content="dark" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:title" content="Alparslan — Yaratıcı Geliştirici & Frontend Mühendisi" />
+  <meta property="og:description" content="Glassmorphism arayüzler, sinematik animasyonlar ve uçtan uca dijital deneyimler." />
+
+  <!-- Favicon: inline SVG monogram, no external file needed -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23050505'/%3E%3Cpolygon points='20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5' fill='none' stroke='%2322e8ff' stroke-width='2'/%3E%3Cpolyline points='13,29 20,12 27,29' fill='none' stroke='%2322e8ff' stroke-width='2.3' stroke-linejoin='round' stroke-linecap='round'/%3E%3Cline x1='16.2' y1='22' x2='23.8' y2='22' stroke='%2322e8ff' stroke-width='2.3' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+  <!-- Fonts: Syne (display), Manrope (body), JetBrains Mono (utility/terminal) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+
+  <!-- Lenis smooth-scroll base styles -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.25/dist/lenis.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Skip link for keyboard / screen reader users -->
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <!-- ==================================================================
+       FILM GRAIN / NOISE OVERLAY — fixed, full-viewport, always on top
+  =================================================================== -->
+  <svg class="noise-defs" aria-hidden="true" focusable="false">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence>
+      <feColorMatrix type="saturate" values="0"></feColorMatrix>
+    </filter>
+  </svg>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- ==================================================================
+       REUSABLE ICON SPRITE — referenced everywhere via <use>
+  =================================================================== -->
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="icon-github" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.3 6.8 9.6.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.4-3.4-1.4-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.5-1.4.1-2.8 0 0 .8-.3 2.7 1a9.2 9.2 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.5.1 2.8.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5 3.9-1.3 6.8-5.1 6.8-9.6C22 6.6 17.5 2 12 2Z"/></symbol>
+    <symbol id="icon-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" /><line x1="7.5" y1="10.5" x2="7.5" y2="17" /><circle cx="7.5" cy="7" r="0.2" /><path d="M11.5 17v-4.2c0-1.4 1-2.3 2.3-2.3 1.2 0 2 .9 2 2.3V17" /></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 6.5 8 6 8-6" /></symbol>
+    <symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4.2" /><circle cx="17.2" cy="6.8" r="0.3" fill="currentColor" /></symbol>
+    <symbol id="icon-external" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></symbol>
+    <symbol id="icon-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11.5a7 7 0 1 0-14 0C5 14.9 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.4" /></symbol>
+    <symbol id="icon-send" viewBox="0 0 24 24"><path d="M21 3 11 13M21 3l-7 18-4-8-8-4 19-6Z" /></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7" /></symbol>
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" /></symbol>
+  </svg>
+
+  <!-- ==================================================================
+       CUSTOM CURSOR — hidden on touch devices via JS
+  =================================================================== -->
+  <canvas id="cursor-trail" aria-hidden="true"></canvas>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- ==================================================================
+       LOADING SCREEN
+  =================================================================== -->
+  <div id="loader" class="loader">
+    <canvas id="loaderParticles" class="loader__particles"></canvas>
+    <div class="loader__scanline" aria-hidden="true"></div>
+    <div class="loader__grid" aria-hidden="true"></div>
+
+    <div class="loader__content">
+      <svg class="loader__logo" id="loaderLogo" viewBox="0 0 40 40" aria-hidden="true">
+        <polygon class="logo-hex" points="20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5" />
+        <polyline class="logo-a" points="13,29 20,12 27,29" />
+        <line class="logo-bar" x1="16.2" y1="22" x2="23.8" y2="22" />
+      </svg>
+
+      <div class="loader__percent"><span id="loaderPercentNum">0</span><span class="unit">%</span></div>
+
+      <div class="loader__bar">
+        <div class="loader__bar-fill" id="loaderBarFill"></div>
+      </div>
+
+      <div class="loader__terminal" id="loaderTerminal" aria-hidden="true"></div>
+
+      <p class="loader__label">DENEYİM HAZIRLANIYOR</p>
+    </div>
+
+    <div class="loader__corner loader__corner--tl"></div>
+    <div class="loader__corner loader__corner--tr"></div>
+    <div class="loader__corner loader__corner--bl"></div>
+    <div class="loader__corner loader__corner--br"></div>
+  </div>
+
+  <!-- Cinematic reveal wipe, sits above content, below loader -->
+  <div class="reveal-wipe" id="revealWipe" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- ==================================================================
+       SCROLL PROGRESS BAR
+  =================================================================== -->
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__fill" id="scrollProgressFill"></div>
+  </div>
+
+  <!-- ==================================================================
+       UTILITY TOPBAR — status + live clock, hidden on small screens
+  =================================================================== -->
+  <div class="topbar" aria-hidden="true">
+    <div class="topbar__inner">
+      <span class="topbar__status">
+        <span class="status-dot"></span>
+        Yeni projelere açığım
+      </span>
+      <span class="topbar__clock">
+        <svg viewBox="0 0 24 24" class="topbar__icon"><circle cx="12" cy="12" r="8.4" /><path d="M12 7.5V12L15 14" /></svg>
+        <span>İSTANBUL, TR</span>
+        <span class="topbar__time" id="topbarTime">--:--:--</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ==================================================================
+       HEADER / NAVIGATION
+  =================================================================== -->
+  <header class="header" id="siteHeader">
+    <div class="header__inner">
+      <a href="#hero" class="brand" data-cursor="hover">
+        <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+          <polygon class="logo-hex" points="20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5" />
+          <polyline class="logo-a" points="13,29 20,12 27,29" />
+          <line class="logo-bar" x1="16.2" y1="22" x2="23.8" y2="22" />
+        </svg>
+        <span class="brand__word">ALPARSLAN</span>
+      </a>
+
+      <nav class="nav" id="primaryNav" aria-label="Birincil gezinme">
+        <a href="#about" class="nav__link" data-cursor="hover"><span data-text="Hakkımda">Hakkımda</span></a>
+        <a href="#skills" class="nav__link" data-cursor="hover"><span data-text="Yetenekler">Yetenekler</span></a>
+        <a href="#projects" class="nav__link" data-cursor="hover"><span data-text="Projeler">Projeler</span></a>
+        <a href="#services" class="nav__link" data-cursor="hover"><span data-text="Hizmetler">Hizmetler</span></a>
+        <a href="#contact" class="nav__link" data-cursor="hover"><span data-text="İletişim">İletişim</span></a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#contact" class="btn btn--ghost btn--sm" data-cursor="hover" data-magnetic>
+          <span>Bağlantıya Geç</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobileNav" data-cursor="hover">
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile fullscreen nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <nav aria-label="Mobil gezinme">
+      <a href="#about" class="mobile-nav__link"><span>01</span>Hakkımda</a>
+      <a href="#skills" class="mobile-nav__link"><span>02</span>Yetenekler</a>
+      <a href="#projects" class="mobile-nav__link"><span>03</span>Projeler</a>
+      <a href="#services" class="mobile-nav__link"><span>04</span>Hizmetler</a>
+      <a href="#experience" class="mobile-nav__link"><span>05</span>Deneyim</a>
+      <a href="#contact" class="mobile-nav__link"><span>06</span>İletişim</a>
+    </nav>
+    <div class="mobile-nav__footer">
+      <a href="#" data-cursor="hover" aria-label="GitHub"><svg viewBox="0 0 24 24"><use href="#icon-github" /></svg></a>
+      <a href="#" data-cursor="hover" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><use href="#icon-linkedin" /></svg></a>
+      <a href="#" data-cursor="hover" aria-label="E-posta"><svg viewBox="0 0 24 24"><use href="#icon-mail" /></svg></a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ================================================================
+         HERO
+    ================================================================= -->
+    <section class="hero" id="hero">
+      <canvas id="heroCanvas" class="hero__canvas"></canvas>
+      <div class="hero__blob hero__blob--cyan" aria-hidden="true"></div>
+      <div class="hero__blob hero__blob--violet" aria-hidden="true"></div>
+      <div class="hero__grid" aria-hidden="true"></div>
+      <div class="hero__rays" aria-hidden="true"></div>
+
+      <div class="hero__floaters" id="heroFloaters" aria-hidden="true">
+        <span class="floater" style="--fx:8%; --fy:22%; --fd:0;">const passion = true;</span>
+        <span class="floater" style="--fx:82%; --fy:18%; --fd:1;">sudo build --premium</span>
+        <span class="floater" style="--fx:10%; --fy:68%; --fd:2;">&lt;Deneyim render={true} /&gt;</span>
+        <span class="floater" style="--fx:85%; --fy:62%; --fd:1;">git commit -m "hayal kur"</span>
+        <span class="floater" style="--fx:50%; --fy:10%; --fd:0;">01001000 01101001</span>
+        <span class="floater" style="--fx:90%; --fy:85%; --fd:2;">// her piksel bir karar</span>
+      </div>
+
+      <div class="hero__inner">
+        <p class="hero__eyebrow mono" data-cursor="hover">
+          <span class="blink-cursor">$</span> whoami
+        </p>
+
+        <h1 class="hero__title" id="heroTitle">
+          <span class="hero__title-line" data-split>ALPARSLAN</span>
+        </h1>
+
+        <div class="hero__role mono">
+          <span class="hero__role-prompt">&gt;</span>
+          <span id="heroRoleText" class="hero__role-text"></span><span class="type-caret">|</span>
+        </div>
+
+        <p class="hero__desc">
+          Web'in sınırlarını zorlayan arayüzler tasarlıyor, hayal gücünü çalışan koda dönüştürüyorum.
+          Glassmorphism'den oyun simülasyonlarına — her satır kodla bir deneyim inşa ediyorum.
+        </p>
+
+        <div class="hero__cta">
+          <a href="#projects" class="btn btn--primary" data-cursor="hover" data-magnetic>
+            <span>Projelerimi Gör</span>
+            <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></svg>
+          </a>
+          <a href="#contact" class="btn btn--ghost" data-cursor="hover" data-magnetic>
+            <span>İletişime Geç</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="#about" class="hero__scroll" data-cursor="hover" aria-label="Aşağı kaydır">
+        <span class="hero__scroll-line"><span></span></span>
+        <span class="hero__scroll-text mono">AŞAĞI KAYDIR</span>
+      </a>
+    </section>
+
+    <!-- ================================================================
+         ABOUT
+    ================================================================= -->
+    <section class="about" id="about">
+      <div class="section-bg-grid" aria-hidden="true"></div>
+      <div class="container about__grid">
+
+        <div class="about__visual" data-reveal="mask">
+          <div class="about__frame">
+            <svg class="about__avatar" viewBox="0 0 200 230" aria-hidden="true">
+              <polygon class="avatar-shoulders" points="72,118 128,118 168,230 32,230" />
+              <polygon class="avatar-head" points="100,35 128,45 140,75 128,105 100,118 72,105 60,75 72,45" />
+              <g class="avatar-facets">
+                <line x1="100" y1="35" x2="100" y2="118" />
+                <line x1="60" y1="75" x2="140" y2="75" />
+                <line x1="72" y1="45" x2="128" y2="105" />
+                <line x1="128" y1="45" x2="72" y2="105" />
+              </g>
+            </svg>
+            <div class="about__scan" aria-hidden="true"></div>
+            <div class="about__corner about__corner--tl"></div>
+            <div class="about__corner about__corner--tr"></div>
+            <div class="about__corner about__corner--bl"></div>
+            <div class="about__corner about__corner--br"></div>
+            <span class="about__tag-id mono">AS_01 // AKTİF</span>
+          </div>
+
+          <span class="about__chip" style="--ox:-18%; --oy:6%; --od:0;">Frontend</span>
+          <span class="about__chip" style="--ox:96%; --oy:2%; --od:1;">Python</span>
+          <span class="about__chip" style="--ox:-12%; --oy:84%; --od:2;">Unity</span>
+          <span class="about__chip" style="--ox:90%; --oy:80%; --od:3;">Glassmorphism</span>
+        </div>
+
+        <div class="about__content">
+          <p class="eyebrow mono" data-reveal="lines">// HAKKIMDA</p>
+          <h2 class="section-title" data-reveal="lines">Pikseller ve kodla<br />hikâye anlatıyorum.</h2>
+
+          <div class="about__text" data-reveal="lines">
+            <p>
+              <strong>Nail Alparslan Silman</strong>, sahne adıyla <strong>Alparslan</strong> —
+              bağımsız çalışan bir web tasarımcısı ve geliştirici. Müşteriler için uçtan uca
+              web siteleri kuruyor, boş zamanlarında ise kendi yazılım ve oyun projelerini hayata geçiriyor.
+            </p>
+            <p>
+              Frontend tarafında HTML, CSS, JavaScript ve React ile; arka planda ise Python ve
+              Unity C# ile çalışıyor. Sinematik animasyonlara, glassmorphism arayüzlere ve
+              karmaşık simülasyon sistemlerine karşı bitmek tükenmek bilmeyen bir tutkusu var.
+            </p>
+          </div>
+
+          <div class="about__stats">
+            <div class="stat">
+              <span class="stat__num mono" data-count="6" data-suffix="+">0</span>
+              <span class="stat__label">Tamamlanan<br />Proje</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num mono" data-count="7" data-suffix="+">0</span>
+              <span class="stat__label">Kullanılan<br />Teknoloji</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num mono" data-count="3" data-suffix="">0</span>
+              <span class="stat__label">Disiplin<br />Web · Masaüstü · Oyun</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num mono" data-count="100" data-suffix="%">0</span>
+              <span class="stat__label">El Yapımı<br />Kod</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SKILLS
+    ================================================================= -->
+    <section class="skills" id="skills">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow mono" data-reveal="lines">// TEKNOLOJİ YIĞINI</p>
+          <h2 class="section-title" data-reveal="lines">Fikirleri çalışan ürüne<br />dönüştüren araçlar.</h2>
+        </div>
+
+        <div class="skills__grid">
+
+          <article class="skill-card" data-tilt data-reveal="up">
+            <span class="skill-card__border" aria-hidden="true"></span>
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 32 32"><polyline points="9,8 4,16 9,24" /><polyline points="23,8 28,16 23,24" /><line x1="18" y1="6" x2="14" y2="26" /></svg>
+            </div>
+            <h3 class="skill-card__title">HTML &amp; CSS3</h3>
+            <p class="skill-card__desc">Anlamsal, erişilebilir ve pikselden ödün vermeyen arayüzler.</p>
+            <div class="skill-card__bar"><div class="skill-card__bar-fill" data-level="98"></div></div>
+            <span class="skill-card__level mono">98%</span>
+          </article>
+
+          <article class="skill-card" data-tilt data-reveal="up">
+            <span class="skill-card__border" aria-hidden="true"></span>
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 32 32"><rect x="5" y="6" width="22" height="20" rx="4" /><text x="16" y="20" text-anchor="middle">JS</text></svg>
+            </div>
+            <h3 class="skill-card__title">JavaScript (ES6+)</h3>
+            <p class="skill-card__desc">Modern, modüler ve performans odaklı uygulama mantığı.</p>
+            <div class="skill-card__bar"><div class="skill-card__bar-fill" data-level="95"></div></div>
+            <span class="skill-card__level mono">95%</span>
+          </article>
+
+          <article class="skill-card" data-tilt data-reveal="up">
+            <span class="skill-card__border" aria-hidden="true"></span>
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="2.4" fill="currentColor" stroke="none" /><ellipse cx="16" cy="16" rx="13" ry="5" /><ellipse cx="16" cy="16" rx="13" ry="5" transform="rotate(62 16 16)" /></svg>
+            </div>
+            <h3 class="skill-card__title">React.js</h3>
+            <p class="skill-card__desc">Bileşen tabanlı, ölçeklenebilir arayüz mimarileri.</p>
+            <div class="skill-card__bar"><div class="skill-card__bar-fill" data-level="90"></div></div>
+            <span class="skill-card__level mono">90%</span>
+          </article>
+
+          <article class="skill-card" data-tilt data-reveal="up">
+            <span class="skill-card__border" aria-hidden="true"></span>
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 32 32"><path d="M11 8a5 5 0 0 0 0 16" /><path d="M21 8a5 5 0 0 1 0 16" /><line x1="11" y1="8" x2="21" y2="24" /></svg>
+            </div>
+            <h3 class="skill-card__title">Python</h3>
+            <p class="skill-card__desc">Otomasyon, masaüstü uygulamalar ve yapay zekâ entegrasyonları.</p>
+            <div class="skill-card__bar"><div class="skill-card__bar-fill" data-level="88"></div></div>
+            <span class="skill-card__level mono">88%</span>
+          </article>
+
+          <article class="skill-card" data-tilt data-reveal="up">
+            <span class="skill-card__border" aria-hidden="true"></span>
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 32 32"><path d="M16 5 27 11.5v9L16 27 5 20.5v-9Z" /><path d="M16 5v22M5 11.5l11 6.5 11-6.5" /></svg>
+            </div>
+            <h3 class="skill-card__title">C# &amp; Unity</h3>
+            <p class="skill-card__desc">Simülasyon sistemleri ve etkileşimli oyun deneyimleri.</p>
+            <div class="skill-card__bar"><div class="skill-card__bar-fill" data-level="82"></div></div>
+            <span class="skill-card__level mono">82%</span>
+          </article>
+
+          <article class="skill-card" data-tilt data-reveal="up">
+            <span class="skill-card__border" aria-hidden="true"></span>
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 32 32"><polygon points="16,4 27,10 27,22 16,28 5,22 5,10" /><circle cx="16" cy="16" r="3" /></svg>
+            </div>
+            <h3 class="skill-card__title">Node.js</h3>
+            <p class="skill-card__desc">Hafif backend servisleri ve API entegrasyonları.</p>
+            <div class="skill-card__bar"><div class="skill-card__bar-fill" data-level="78"></div></div>
+            <span class="skill-card__level mono">78%</span>
+          </article>
+
+          <article class="skill-card" data-tilt data-reveal="up">
+            <span class="skill-card__border" aria-hidden="true"></span>
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 32 32"><circle cx="9" cy="8" r="2.4" /><circle cx="9" cy="24" r="2.4" /><circle cx="23" cy="16" r="2.4" /><path d="M9 10.4V24M9 12c0 5 4 4 12 4" /></svg>
+            </div>
+            <h3 class="skill-card__title">Git &amp; GitHub</h3>
+            <p class="skill-card__desc">Sürüm kontrolü ve düzenli, izlenebilir geliştirme süreci.</p>
+            <div class="skill-card__bar"><div class="skill-card__bar-fill" data-level="90"></div></div>
+            <span class="skill-card__level mono">90%</span>
+          </article>
+
+          <article class="skill-card" data-tilt data-reveal="up">
+            <span class="skill-card__border" aria-hidden="true"></span>
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 32 32"><path d="M5 22c5 0 4-14 9-14s2 14 9 14" /><circle cx="23" cy="22" r="1.6" fill="currentColor" stroke="none" /><circle cx="26.5" cy="19.5" r="1.1" fill="currentColor" stroke="none" /></svg>
+            </div>
+            <h3 class="skill-card__title">Motion &amp; GSAP</h3>
+            <p class="skill-card__desc">Sinematik geçişler, scroll animasyonları ve mikro etkileşimler.</p>
+            <div class="skill-card__bar"><div class="skill-card__bar-fill" data-level="93"></div></div>
+            <span class="skill-card__level mono">93%</span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         PROJECTS
+    ================================================================= -->
+    <section class="projects" id="projects">
+      <div class="container">
+        <div class="section-head section-head--split">
+          <div>
+            <p class="eyebrow mono" data-reveal="lines">// SEÇİLİ İŞLER</p>
+            <h2 class="section-title" data-reveal="lines">Düşünceden<br />deneyime.</h2>
+          </div>
+          <div class="filter-bar" id="filterBar" role="tablist" aria-label="Proje filtrele">
+            <button class="filter-btn is-active" data-filter="all" data-cursor="hover">Tümü</button>
+            <button class="filter-btn" data-filter="web" data-cursor="hover">Web</button>
+            <button class="filter-btn" data-filter="masaustu" data-cursor="hover">Masaüstü</button>
+            <button class="filter-btn" data-filter="oyun" data-cursor="hover">Oyun &amp; Simülasyon</button>
+            <button class="filter-btn" data-filter="yapayzeka" data-cursor="hover">Yapay Zekâ</button>
+          </div>
+        </div>
+
+        <!-- Project content reflects the author's own recent work — swap links / copy as needed -->
+        <div class="projects__grid" id="projectsGrid">
+
+          <article class="project-card" data-category="web" data-tilt data-reveal="up">
+            <div class="project-card__thumb thumb--kageforge">
+              <span class="thumb__tag mono">WEB · E-TİCARET</span>
+              <div class="thumb__scan"></div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">KAGE FORGE</h3>
+              <p class="project-card__desc">Ninja estetiğinden ilham alan, uçtan uca animasyonlu bir e-ticaret deneyimi. Karanlık bir sahne, keskin geçişler ve katana gibi net mikro etkileşimler.</p>
+              <div class="project-card__tags">
+                <span>GSAP</span><span>Animasyon</span><span>E-Ticaret</span>
+              </div>
+              <div class="project-card__links">
+                <a href="#" data-cursor="hover" aria-label="GitHub'da görüntüle"><svg viewBox="0 0 24 24"><use href="#icon-github" /></svg></a>
+                <a href="#" class="btn btn--sm btn--ghost" data-cursor="hover">Canlı Demo <svg viewBox="0 0 24 24"><use href="#icon-external" /></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="web" data-tilt data-reveal="up">
+            <div class="project-card__thumb thumb--alpi">
+              <span class="thumb__tag mono">WEB · KURUMSAL</span>
+              <div class="thumb__scan"></div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">ALPİ</h3>
+              <p class="project-card__desc">Bir markanın dijital yüzü için cam-morfizm temelli, sade ve güçlü bir kurumsal web sitesi.</p>
+              <div class="project-card__tags">
+                <span>Glassmorphism</span><span>UI/UX</span><span>Kurumsal</span>
+              </div>
+              <div class="project-card__links">
+                <a href="#" data-cursor="hover" aria-label="GitHub'da görüntüle"><svg viewBox="0 0 24 24"><use href="#icon-github" /></svg></a>
+                <a href="#" class="btn btn--sm btn--ghost" data-cursor="hover">Canlı Demo <svg viewBox="0 0 24 24"><use href="#icon-external" /></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="web" data-tilt data-reveal="up">
+            <div class="project-card__thumb thumb--piccolo">
+              <span class="thumb__tag mono">WEB · ÇOK DİLLİ</span>
+              <div class="thumb__scan"></div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Piccolo Cafe</h3>
+              <p class="project-card__desc">Türkçe, İngilizce ve Almanca dil seçenekli, 3 boyutlu atom sahnesiyle açılan sıcak bir kafe deneyimi.</p>
+              <div class="project-card__tags">
+                <span>Çok Dilli</span><span>3D Sahne</span><span>Web Tasarım</span>
+              </div>
+              <div class="project-card__links">
+                <a href="#" data-cursor="hover" aria-label="GitHub'da görüntüle"><svg viewBox="0 0 24 24"><use href="#icon-github" /></svg></a>
+                <a href="#" class="btn btn--sm btn--ghost" data-cursor="hover">Canlı Demo <svg viewBox="0 0 24 24"><use href="#icon-external" /></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="oyun" data-tilt data-reveal="up">
+            <div class="project-card__thumb thumb--homeostasis">
+              <span class="thumb__tag mono">OYUN · SİMÜLASYON</span>
+              <div class="thumb__scan"></div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Project Homeostasis</h3>
+              <p class="project-card__desc">Altı hormonun gerçekçi geri besleme döngüleriyle çalıştığı, Unity C# ve Python üzerinde paralel geliştirilen biyolojik bir simülasyon oyunu.</p>
+              <div class="project-card__tags">
+                <span>Unity</span><span>C#</span><span>Simülasyon</span>
+              </div>
+              <div class="project-card__links">
+                <a href="#" data-cursor="hover" aria-label="GitHub'da görüntüle"><svg viewBox="0 0 24 24"><use href="#icon-github" /></svg></a>
+                <a href="#" class="btn btn--sm btn--ghost" data-cursor="hover">Canlı Demo <svg viewBox="0 0 24 24"><use href="#icon-external" /></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="yapayzeka" data-tilt data-reveal="up">
+            <div class="project-card__thumb thumb--jarvis">
+              <span class="thumb__tag mono">YAPAY ZEKÂ</span>
+              <div class="thumb__scan"></div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">JARVIS AI Asistanı</h3>
+              <p class="project-card__desc">Sesle çalışan, HUD arayüzlü kişisel yapay zekâ asistanı. Python ve bir LLaMA dil modeliyle güçlendirildi.</p>
+              <div class="project-card__tags">
+                <span>Python</span><span>Yapay Zekâ</span><span>HUD UI</span>
+              </div>
+              <div class="project-card__links">
+                <a href="#" data-cursor="hover" aria-label="GitHub'da görüntüle"><svg viewBox="0 0 24 24"><use href="#icon-github" /></svg></a>
+                <a href="#" class="btn btn--sm btn--ghost" data-cursor="hover">Canlı Demo <svg viewBox="0 0 24 24"><use href="#icon-external" /></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="masaustu" data-tilt data-reveal="up">
+            <div class="project-card__thumb thumb--nova">
+              <span class="thumb__tag mono">MASAÜSTÜ</span>
+              <div class="thumb__scan"></div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Nova Kütüphane Programı</h3>
+              <p class="project-card__desc">Kütüphaneler için geliştirilmiş, katalog ve ödünç takibini kolaylaştıran Türkçe masaüstü yönetim uygulaması.</p>
+              <div class="project-card__tags">
+                <span>Python</span><span>Tkinter</span><span>Masaüstü</span>
+              </div>
+              <div class="project-card__links">
+                <a href="#" data-cursor="hover" aria-label="GitHub'da görüntüle"><svg viewBox="0 0 24 24"><use href="#icon-github" /></svg></a>
+                <a href="#" class="btn btn--sm btn--ghost" data-cursor="hover">Canlı Demo <svg viewBox="0 0 24 24"><use href="#icon-external" /></svg></a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SERVICES
+    ================================================================= -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow mono" data-reveal="lines">// NELER YAPIYORUM</p>
+          <h2 class="section-title" data-reveal="lines">Tek kişilik stüdyo,<br />uçtan uca üretim.</h2>
+        </div>
+
+        <div class="services__grid">
+
+          <article class="service-card" data-reveal="up">
+            <div class="service-card__icon">
+              <svg class="icon-a" viewBox="0 0 32 32"><rect x="4" y="6" width="24" height="20" rx="2.5" /><line x1="4" y1="12" x2="28" y2="12" /><circle cx="8" cy="9" r="0.8" fill="currentColor" /></svg>
+              <svg class="icon-b" viewBox="0 0 32 32"><path d="M16 5 4 11v10l12 6 12-6V11Z" /><path d="M16 5v22M4 11l12 6 12-6" /></svg>
+            </div>
+            <h3>Web Tasarım &amp; Geliştirme</h3>
+            <p>Konseptten yayına; hızlı, duyarlı ve özenle kodlanmış web siteleri.</p>
+          </article>
+
+          <article class="service-card" data-reveal="up">
+            <div class="service-card__icon">
+              <svg class="icon-a" viewBox="0 0 32 32"><path d="M5 22c5 0 4-14 9-14s2 14 9 14" /></svg>
+              <svg class="icon-b" viewBox="0 0 32 32"><path d="M6 16a10 10 0 0 1 20 0" /><path d="M6 16a10 10 0 0 0 20 0" /><circle cx="16" cy="16" r="2" fill="currentColor" /></svg>
+            </div>
+            <h3>Arayüz Animasyon Sistemleri</h3>
+            <p>GSAP ve özel JavaScript ile sinematik scroll deneyimleri ve mikro etkileşimler.</p>
+          </article>
+
+          <article class="service-card" data-reveal="up">
+            <div class="service-card__icon">
+              <svg class="icon-a" viewBox="0 0 32 32"><rect x="5" y="6" width="22" height="15" rx="2" /><line x1="11" y1="26" x2="21" y2="26" /><line x1="16" y1="21" x2="16" y2="26" /></svg>
+              <svg class="icon-b" viewBox="0 0 32 32"><circle cx="16" cy="14" r="9" /><path d="M16 9v5l3.5 2" /></svg>
+            </div>
+            <h3>Masaüstü Uygulama Geliştirme</h3>
+            <p>Python tabanlı, gerçek ihtiyaçlara çözüm üreten masaüstü araçları.</p>
+          </article>
+
+          <article class="service-card" data-reveal="up">
+            <div class="service-card__icon">
+              <svg class="icon-a" viewBox="0 0 32 32"><polygon points="16,4 27,10 27,22 16,28 5,22 5,10" /></svg>
+              <svg class="icon-b" viewBox="0 0 32 32"><circle cx="11" cy="11" r="3" /><circle cx="21" cy="11" r="3" /><circle cx="16" cy="21" r="3" /><line x1="11" y1="14" x2="14.5" y2="19" /><line x1="21" y1="14" x2="17.5" y2="19" /></svg>
+            </div>
+            <h3>Oyun &amp; Simülasyon Geliştirme</h3>
+            <p>Unity C# ile etkileşimli sistemler ve oyunlaştırılmış simülasyonlar.</p>
+          </article>
+
+          <article class="service-card" data-reveal="up">
+            <div class="service-card__icon">
+              <svg class="icon-a" viewBox="0 0 32 32"><circle cx="16" cy="16" r="6" /><line x1="16" y1="3" x2="16" y2="7" /><line x1="16" y1="25" x2="16" y2="29" /><line x1="3" y1="16" x2="7" y2="16" /><line x1="25" y1="16" x2="29" y2="16" /></svg>
+              <svg class="icon-b" viewBox="0 0 32 32"><rect x="7" y="7" width="18" height="18" rx="3" /><path d="M12 16h8M16 12v8" /></svg>
+            </div>
+            <h3>Yapay Zekâ Destekli Araçlar</h3>
+            <p>Dil modelleriyle entegre, gerçek zamanlı çalışan akıllı asistanlar.</p>
+          </article>
+
+          <article class="service-card" data-reveal="up">
+            <div class="service-card__icon">
+              <svg class="icon-a" viewBox="0 0 32 32"><rect x="6" y="6" width="20" height="20" rx="6" /></svg>
+              <svg class="icon-b" viewBox="0 0 32 32"><path d="M16 4 6 9.5v8.7c0 6 4.3 8.6 10 9.8 5.7-1.2 10-3.8 10-9.8V9.5Z" /></svg>
+            </div>
+            <h3>Marka &amp; Görsel Kimlik</h3>
+            <p>Glassmorphism ve karanlık temalı, akılda kalan dijital kimlikler.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         EXPERIENCE — qualitative skill journey (not a fixed-date résumé)
+    ================================================================= -->
+    <section class="experience" id="experience">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow mono" data-reveal="lines">// YOLCULUK</p>
+          <h2 class="section-title" data-reveal="lines">Meraktan ustalığa.</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline__line" aria-hidden="true">
+            <div class="timeline__line-fill" id="timelineFill"></div>
+          </div>
+
+          <div class="timeline__item" data-reveal="up">
+            <span class="timeline__node"></span>
+            <div class="timeline__content">
+              <span class="timeline__index mono">01</span>
+              <h3>Temeller</h3>
+              <p>HTML, CSS ve JavaScript ile ilk satırlar; web'in nasıl çalıştığını çözme merakı.</p>
+            </div>
+          </div>
+
+          <div class="timeline__item" data-reveal="up">
+            <span class="timeline__node"></span>
+            <div class="timeline__content">
+              <span class="timeline__index mono">02</span>
+              <h3>Arayüz Zanaatı</h3>
+              <p>React ve modern animasyon kütüphaneleriyle bileşen tabanlı, sinematik arayüzlere geçiş.</p>
+            </div>
+          </div>
+
+          <div class="timeline__item" data-reveal="up">
+            <span class="timeline__node"></span>
+            <div class="timeline__content">
+              <span class="timeline__index mono">03</span>
+              <h3>Masaüstüne Açılış</h3>
+              <p>Python ve Tkinter ile Nova Kütüphane Programı gibi gerçek dünya araçları üretmeye başladı.</p>
+            </div>
+          </div>
+
+          <div class="timeline__item" data-reveal="up">
+            <span class="timeline__node"></span>
+            <div class="timeline__content">
+              <span class="timeline__index mono">04</span>
+              <h3>Simülasyon &amp; Oyun</h3>
+              <p>Unity C# ile Project Homeostasis'in temelini oluşturan sistemik düşünme alışkanlığı geliştirildi.</p>
+            </div>
+          </div>
+
+          <div class="timeline__item" data-reveal="up">
+            <span class="timeline__node"></span>
+            <div class="timeline__content">
+              <span class="timeline__index mono">05</span>
+              <h3>Bugün — Freelance</h3>
+              <p>Nail Alparslan Silman adıyla müşteri projeleri üretiyor, yapay zekâ destekli araçlarla sınırları zorluyor.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         TESTIMONIALS — illustrative placeholder quotes, replace with real ones
+    ================================================================= -->
+    <section class="testimonials" id="testimonials">
+      <div class="section-bg-grid" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-head section-head--center">
+          <p class="eyebrow mono" data-reveal="lines">// REFERANSLAR</p>
+          <h2 class="section-title" data-reveal="lines">Müşteriler ne diyor?</h2>
+        </div>
+
+        <div class="testimonials__wrap">
+          <div class="testimonials__track" id="testimonialsTrack">
+
+            <article class="testimonial-card">
+              <svg class="testimonial-card__quote" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V12.5C0 5 4.8 0 12 0v6c-3.6 0-6 2.4-6 6.5V13h6v11H0Zm18 0V12.5C18 5 22.8 0 30 0v6c-3.6 0-6 2.4-6 6.5V13h6v11H18Z" /></svg>
+              <p>Projeyi teslim aldığımızda ekibimiz hayrete düştü — her animasyon, her geçiş tam istediğimiz gibiydi.</p>
+              <div class="testimonial-card__author">
+                <span class="testimonial-card__avatar mono">AE</span>
+                <div><strong>ALPİ Marka Ekibi</strong><span>ALPİ Projesi</span></div>
+              </div>
+            </article>
+
+            <article class="testimonial-card">
+              <svg class="testimonial-card__quote" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V12.5C0 5 4.8 0 12 0v6c-3.6 0-6 2.4-6 6.5V13h6v11H0Zm18 0V12.5C18 5 22.8 0 30 0v6c-3.6 0-6 2.4-6 6.5V13h6v11H18Z" /></svg>
+              <p>Karanlık tema ve hareket dili tam istediğimiz ninja ruhunu yansıttı. Dönüşüm oranımız fark edilir şekilde arttı.</p>
+              <div class="testimonial-card__author">
+                <span class="testimonial-card__avatar mono">KF</span>
+                <div><strong>KAGE FORGE</strong><span>Kurucu Ortak</span></div>
+              </div>
+            </article>
+
+            <article class="testimonial-card">
+              <svg class="testimonial-card__quote" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V12.5C0 5 4.8 0 12 0v6c-3.6 0-6 2.4-6 6.5V13h6v11H0Zm18 0V12.5C18 5 22.8 0 30 0v6c-3.6 0-6 2.4-6 6.5V13h6v11H18Z" /></svg>
+              <p>Üç dilli site, masamızı uluslararası misafirlere de açtı. Detaylara verdiği önem inanılmazdı.</p>
+              <div class="testimonial-card__author">
+                <span class="testimonial-card__avatar mono">PC</span>
+                <div><strong>Piccolo Cafe</strong><span>İşletmeci</span></div>
+              </div>
+            </article>
+
+            <article class="testimonial-card">
+              <svg class="testimonial-card__quote" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V12.5C0 5 4.8 0 12 0v6c-3.6 0-6 2.4-6 6.5V13h6v11H0Zm18 0V12.5C18 5 22.8 0 30 0v6c-3.6 0-6 2.4-6 6.5V13h6v11H18Z" /></svg>
+              <p>Sadece kod yazmıyor, problemi gerçekten anlıyor. Nova ile kataloğumuzu artık dakikalar içinde tarıyoruz.</p>
+              <div class="testimonial-card__author">
+                <span class="testimonial-card__avatar mono">NK</span>
+                <div><strong>Kütüphane Projesi</strong><span>Müşteri</span></div>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="testimonials__controls">
+            <button class="testimonials__arrow" id="testimonialPrev" aria-label="Önceki" data-cursor="hover"><svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7" /></svg></button>
+            <div class="testimonials__dots" id="testimonialsDots"></div>
+            <button class="testimonials__arrow" id="testimonialNext" aria-label="Sonraki" data-cursor="hover"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         CONTACT
+    ================================================================= -->
+    <section class="contact" id="contact">
+      <div class="hero__rays hero__rays--contact" aria-hidden="true"></div>
+      <div class="container contact__grid">
+
+        <div class="contact__intro" data-reveal="lines">
+          <p class="eyebrow mono">// İLETİŞİM</p>
+          <h2 class="section-title">Bir proje mi var?<br />Konuşalım.</h2>
+          <p class="contact__sub">Yeni projeler için müsaitim. Fikrini paylaş, birlikte hayata geçirelim.</p>
+
+          <span class="status-badge"><span class="status-dot"></span>Yeni Projelere Açık</span>
+
+          <ul class="contact__info">
+            <li>
+              <svg viewBox="0 0 24 24"><use href="#icon-mail" /></svg>
+              <a href="mailto:merhaba@alparslan.dev" data-cursor="hover">merhaba@alparslan.dev</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><use href="#icon-pin" /></svg>
+              <span>İstanbul, Türkiye</span>
+            </li>
+          </ul>
+
+          <div class="contact__socials">
+            <a href="#" data-cursor="hover" aria-label="GitHub"><svg viewBox="0 0 24 24"><use href="#icon-github" /></svg></a>
+            <a href="#" data-cursor="hover" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><use href="#icon-linkedin" /></svg></a>
+            <a href="#" data-cursor="hover" aria-label="Instagram"><svg viewBox="0 0 24 24"><use href="#icon-instagram" /></svg></a>
+          </div>
+        </div>
+
+        <form class="contact__form" id="contactForm" novalidate data-reveal="up">
+          <div class="form-field">
+            <input type="text" id="cf-name" name="name" placeholder=" " required autocomplete="name" />
+            <label for="cf-name">Ad Soyad</label>
+            <span class="form-field__glow"></span>
+          </div>
+
+          <div class="form-field">
+            <input type="email" id="cf-email" name="email" placeholder=" " required autocomplete="email" />
+            <label for="cf-email">E-posta</label>
+            <span class="form-field__glow"></span>
+          </div>
+
+          <div class="form-field form-field--select">
+            <label for="cf-type" class="form-field__label-static mono">Proje Türü</label>
+            <select id="cf-type" name="type">
+              <option value="web">Web Sitesi</option>
+              <option value="masaustu">Masaüstü Uygulama</option>
+              <option value="oyun">Oyun &amp; Simülasyon</option>
+              <option value="diger">Diğer</option>
+            </select>
+            <span class="form-field__glow"></span>
+          </div>
+
+          <div class="form-field form-field--area">
+            <textarea id="cf-message" name="message" placeholder=" " rows="5" required></textarea>
+            <label for="cf-message">Projenden bahset</label>
+            <span class="form-field__glow"></span>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--liquid" id="contactSubmit">
+            <span class="btn--liquid__fill" aria-hidden="true"></span>
+            <span class="btn--liquid__label">
+              <span class="btn--liquid__text">Mesajı Gönder</span>
+              <svg viewBox="0 0 24 24"><use href="#icon-send" /></svg>
+            </span>
+          </button>
+          <p class="contact__form-note mono" id="contactFormNote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================================================================
+       FOOTER
+  =================================================================== -->
+  <footer class="footer" id="siteFooter">
+    <canvas id="footerCanvas" class="footer__canvas" aria-hidden="true"></canvas>
+    <div class="container footer__inner">
+
+      <div class="footer__top">
+        <a href="#hero" class="footer__wordmark" data-cursor="hover" data-reveal="mask">ALPARSLAN</a>
+        <p class="footer__tagline">Kod ve tasarımla deneyimler inşa ediyorum.</p>
+      </div>
+
+      <div class="footer__columns">
+        <nav class="footer__col" aria-label="Site haritası">
+          <h4 class="mono">SİTE HARİTASI</h4>
+          <a href="#hero" data-cursor="hover">Anasayfa</a>
+          <a href="#about" data-cursor="hover">Hakkımda</a>
+          <a href="#projects" data-cursor="hover">Projeler</a>
+          <a href="#contact" data-cursor="hover">İletişim</a>
+        </nav>
+
+        <nav class="footer__col" aria-label="Sosyal bağlantılar">
+          <h4 class="mono">BAĞLANTILAR</h4>
+          <a href="#" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-github" /></svg>GitHub</a>
+          <a href="#" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-linkedin" /></svg>LinkedIn</a>
+          <a href="#" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-instagram" /></svg>Instagram</a>
+          <a href="mailto:merhaba@alparslan.dev" data-cursor="hover"><svg viewBox="0 0 24 24"><use href="#icon-mail" /></svg>E-posta</a>
+        </nav>
+
+        <div class="footer__col footer__col--cta">
+          <h4 class="mono">YENİ BİR PROJE Mİ VAR?</h4>
+          <p>Fikrini anlat, beraber şekillendirelim.</p>
+          <a href="#contact" class="btn btn--primary btn--sm" data-cursor="hover" data-magnetic>Hadi Konuşalım</a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© <span id="footerYear">2026</span> Nail Alparslan Silman. Tüm hakları saklıdır.</p>
+        <p class="mono">Bu site sıfırdan, elle kodlandı.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Başa dön" data-cursor="hover">
+    <svg viewBox="0 0 24 24"><use href="#icon-arrow-up" /></svg>
+  </button>
+
+  <!-- ==================================================================
+       SCRIPTS
+  =================================================================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrambleTextPlugin.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
