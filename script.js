@@ -65,10 +65,7 @@
 
   // ---------- CURSOR ----------
   function initCustomCursor() {
-    if (isTouch()) {
-      document.body.style.cursor = 'auto';
-      return;
-    }
+    if (isTouch()) { document.body.style.cursor = 'auto'; return; }
     const ctx = cursorTrailCanvas.getContext('2d');
     cursorTrailCanvas.width = window.innerWidth;
     cursorTrailCanvas.height = window.innerHeight;
@@ -311,7 +308,6 @@
         </div>
       `).join('')}
     `;
-    // Re-trigger timeline fill scroll animation
     const timelineFill = document.getElementById('timelineFill');
     if (timelineFill) {
       ScrollTrigger.create({ trigger: '.timeline', start: 'top 70%', end: 'bottom 30%', onUpdate: self => gsap.to(timelineFill, { height: self.progress*100+'%', duration:0.2 }) });
